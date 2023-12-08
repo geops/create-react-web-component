@@ -1,3 +1,1 @@
-declare module 'style-it';
-
-declare module 'react-shadow';
+declare module "react-shadow";

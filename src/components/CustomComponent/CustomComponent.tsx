@@ -1,10 +1,7 @@
-import '@webcomponents/webcomponentsjs/webcomponents-bundle.js';
-import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js';
-
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Root, createRoot, hydrateRoot } from 'react-dom/client';
 import { createProxy } from 'react-shadow';
-import { EventProvider } from '../components/EventContext';
+import { EventProvider } from '../EventContext/EventContext';
 
 let componentAttributes: any;
 let componentProperties: any;
@@ -28,6 +25,8 @@ export const setMode = (shadowOption: boolean) => {
 };
 
 class CustomComponent extends HTMLElement {
+  root?: Root;
+
   public static get observedAttributes() {
     return Object.keys(componentAttributes).map((k) => k.toLowerCase());
   }
@@ -43,7 +42,7 @@ class CustomComponent extends HTMLElement {
   }
 
   public connectedCallback() {
-    this.mountReactApp();
+    this.mount();
   }
 
   public attributeChangedCallback(name: string, oldValue: string, newValue: string) {
@@ -51,7 +50,7 @@ class CustomComponent extends HTMLElement {
       return;
     }
 
-    this.mountReactApp();
+    this.update();
   }
 
   public reactPropsChangedCallback(name: string, oldValue: any, newValue: any) {
@@ -61,26 +60,40 @@ class CustomComponent extends HTMLElement {
 
     componentProperties[name] = newValue;
 
-    this.mountReactApp();
+    this.update();
   }
 
   public disconnectedCallback() {
-    ReactDOM.unmountComponentAtNode(this);
+    this.unmount();
   }
 
-  private mountReactApp() {
-    const application = (
+  private mount() {
+    if (!this.root) {      
+      this.root = createRoot(this);
+    }
+    this.update();
+  }
+
+  private update() {
+    let application = (
       <EventProvider value={this.eventDispatcher}>
         {React.createElement(rootComponent, this.reactProps())}
       </EventProvider>
     );
 
-    if (shadow !== undefined && !shadow) {
-      ReactDOM.render(application, this);
-    } else {
+    if (shadow) {
+      // @ts-ignore
       const root = createProxy({ div: undefined });
-      ReactDOM.render(<root.div>{application}</root.div>, this);
+      application = (<root.div>{application}</root.div>);
     }
+
+    this.root?.render(application);
+  }
+  private unmount() {
+    if (!this.root) {      
+      this.root = createRoot(this);
+    }
+    this.update();
   }
 
   private eventDispatcher = (event: Event) => {

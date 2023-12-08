@@ -11,31 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
       with:
-        node-version: 10.x
-        registry-url: 'https://registry.npmjs.org'
-      
+        node-version-file: '.nvmrc'
+        cache: 'yarn'
+
     - name: Install
       run: |
-        npm install yarn -g
-        npm install codecov -g
-        npm install typescript -g
-        yarn install
-        yarn install-peer-deps
+        yarn install --frozen-lockfile
 
     - name: Test
       run: |
         yarn test
-        codecov
 
     - name: Build
       run: |
-        tsc --build
-
-    - name: Publish to NPM
-      run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        yarn build
   

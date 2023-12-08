@@ -1,11 +1,11 @@
-import CustomComponent, { setComponentAttributes, setComponentProperties, setRootComponent, setMode } from './CustomComponent';
+import CustomComponent, { setComponentAttributes, setComponentProperties, setRootComponent, setMode } from '../CustomComponent';
 
 let componentAttributes: any | null = null;
 let componentProperties: any | null = null;
 let elementName: string | null = null;
 let rootComponent: React.FC<any> | React.ComponentClass<any, any> | null = null;
 
-export class ReactWebComponent {
+class ReactWebComponent {
   public static setAttributes(attributes: any) {
     componentAttributes = attributes;
   }
@@ -78,3 +78,5 @@ export class ReactWebComponent {
     }
   }
 }
+
+export default ReactWebComponent;
