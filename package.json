@@ -1,7 +1,7 @@
 {
   "name": "@geops/create-react-web-component",
-  "version": "3.0.4-beta.14",
-  "description": "Set up a React App wrapped in a Web Component",
+  "version": "3.0.5",
+  "description": "Create a web-component from a React component.",
   "main": "dist/index.js",
   "files": [
     "dist/*"
@@ -13,19 +13,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oterral/create-react-web-component.git"
+    "url": "git+https://github.com/geops/create-react-web-component.git"
   },
   "keywords": [
     "react",
     "web-component",
     "typescript"
   ],
-  "author": "Silind Software <contact@silind.com>",
+  "author": "geOps AG <info@geops.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/oterral/create-react-web-component/issues"
+    "url": "https://github.com/geops/create-react-web-component/issues"
   },
-  "homepage": "https://github.com/oterral/create-react-web-component#readme",
+  "homepage": "https://github.com/geops/create-react-web-component#readme",
   "dependencies": {
     "react-shadow": "^20.4.0"
   },

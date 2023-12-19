@@ -23,16 +23,16 @@ import ReactWebComponent from "@geops/create-react-web-component";
 import MyReactComponent from "./MyReactComponent";
 
 const attributes = {
-  stringAttribute: "default value",
+  string: "default value",
 }
 
-const props = {
-  objectProp: { "key": "value"}
-  arrayProp: ["foo"]
+const properties = {
+  object: { "key": "value"}
+  array: ["foo"]
 }
 
 ReactWebComponent.setAttributes(attributes);
-ReactWebComponent.setProperties(defaultProps);
+ReactWebComponent.setProperties(properties);
 ReactWebComponent.render(MyReactComponent, "my-web-component", { shadow: false });
 ```
 
@@ -48,9 +48,9 @@ Then load your module in a HTML page
     <script>
       const elt = doucment.getElementById('myWebComponent');
 
-      console.log(elt.stringAttribute); // --> "default value"
-      console.log(elt.objectProp); // --> "{ "key": "value" }"
-      console.log(elt.arrayProp); // --> "['foo']"
+      console.log(elt.string); // --> "foo"
+      console.log(elt.object); // --> "{ "key": "value" }"
+      console.log(elt.array); // --> "['foo']"
     </script>
   </body>
 </html>
