@@ -31,8 +31,8 @@ const props = {
   arrayProp: ["foo"]
 }
 
-ReactWebComponent.setAttributes(MyReactComponent.attributes);
-ReactWebComponent.setProperties(MyReactComponent.defaultProps);
+ReactWebComponent.setAttributes(attributes);
+ReactWebComponent.setProperties(defaultProps);
 ReactWebComponent.render(MyReactComponent, "my-web-component", { shadow: false });
 ```
 
@@ -75,10 +75,10 @@ Pull requests are always welcome, and I'll do my best to do reviews as fast as I
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/Silind-Software/create-react-web-component/blob/master/LICENSE)
+This project is licensed under the [MIT License](https://github.com/geops/create-react-web-component/blob/master/LICENSE)
 
 ## Get Help
 
 Read more about using Web Components with React on the [official React Docs](https://reactjs.org/docs/web-components.html)
 
-- If appropriate, [open an issue](https://github.com/oterral/create-react-web-component/issues/new) on GitHub
+- If appropriate, [open an issue](https://github.com/geops/create-react-web-component/issues/new) on GitHub
